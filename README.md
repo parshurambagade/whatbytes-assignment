@@ -11,11 +11,41 @@ This is a basic product listing app built as part of **Whatbytes Frontend Assign
 
 ## Current Status
 
-This is my first commit after setting up the project structure. I've:
+**Latest Update**: Added product data and API endpoints
+
+I've made good progress on the backend setup:
 
 - Created the Next.js app with TypeScript
 - Added Tailwind CSS for styling
 - Set up the basic folder structure for organizing components, services, stores, etc.
+- **NEW**: Added `products.json` file with sample product data (fetched from dummy JSON API)
+- **NEW**: Created API endpoints:
+  - `GET /api/products` - Get all products
+  - `GET /api/products/[id]` - Get specific product by ID
+
+## API Endpoints
+
+### Get All Products
+
+```bash
+GET /api/products
+```
+
+### Get Product by ID
+
+```bash
+GET /api/products/78
+```
+
+## Data Source
+
+The product data is stored in `data/products.json` and contains real product information fetched from a dummy JSON API. This includes:
+
+- Product details (title, description, price)
+- Product images and thumbnails
+- Stock information
+- Ratings and reviews
+- Categories and tags
 
 ## Getting Started
 
@@ -31,8 +61,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 ```
 app/          # Next.js app directory
+  api/        # API routes for products
 components/   # Reusable UI components
-data/         # Static data and mock data
+data/         # Static data (products.json with sample data)
 hooks/        # Custom React hooks
 lib/          # Utility functions and configurations
 services/     # API calls and external services
