@@ -3,6 +3,7 @@
 import useAllProducts from "@/hooks/useAllProducts";
 import React from "react";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 const ProductCardsContainer = () => {
   const { allProducts, loading, error } = useAllProducts();
@@ -21,7 +22,9 @@ const ProductCardsContainer = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-2 gap-4">
       {allProducts?.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <Link href={`/product/${product.id}`} key={product.id}>
+          <ProductCard product={product} />
+        </Link>
       ))}
     </div>
   );

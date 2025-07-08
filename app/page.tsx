@@ -1,4 +1,4 @@
-import ProductCardsContainer from "@/components/ProductCardsContainer";
+import ProductCardsContainer from "@/components/home/ProductCardsContainer";
 
 export default function Home() {
   return (
