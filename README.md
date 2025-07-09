@@ -1,87 +1,127 @@
-# Product Listing App
+# 🛒 Whatbytes Frontend Assignment – E-commerce App
 
-This is a basic product listing app built as part of **Whatbytes Frontend Assignment**. It's an ecommerce-like application where users can browse products, view details, and more.
+This is a fully responsive, filterable e-commerce app built using **Next.js** and **Tailwind CSS**, featuring product listing, product details, smart cart functionality, and URL-based filtering/search — all implemented with client-side logic and persisted state using Zustand and localStorage.
 
-## Tech Stack
+---
 
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - For type safety
-- **Tailwind CSS** - For styling
-- **React** - Frontend library
+## 🚀 Live Demo
 
-## Current Status
+[🔗 View Deployed App on Vercel](https://whatbytes-assignment-beta.vercel.app/)
 
-**Latest Update**: Added product data and API endpoints
+<video src="https://whatbytes-assignment-beta.vercel.app/demo.mp4" autoplay loop muted playsinline width="100%" />
 
-I've made good progress on the backend setup:
+---
 
-- Created the Next.js app with TypeScript
-- Added Tailwind CSS for styling
-- Set up the basic folder structure for organizing components, services, stores, etc.
-- **NEW**: Added `products.json` file with sample product data (fetched from dummy JSON API)
-- **NEW**: Created API endpoints:
-  - `GET /api/products` - Get all products
-  - `GET /api/products/[id]` - Get specific product by ID
+## 📌 Features
 
-## API Endpoints
+### ✅ Core Functionality
 
-### Get All Products
+- 🏠 Home page with:
+  - Category and price range filters
+  - Search bar with real-time filtering
+  - URL-based query filters (`category`, `minPrice`, `maxPrice`, `q`)
+  - Responsive product grid
+- 📄 Product detail page:
+  - Dynamic route `/product/[id]`
+  - Quantity management
+  - Add to cart support
+- 🛒 Cart page:
+  - Local cart state with quantity controls
+  - Remove items and clear cart
+  - Cart summary and persistent storage
 
-```bash
-GET /api/products
-```
+### 💡 Extras
 
-### Get Product by ID
+- 🔁 Smart filter reset when category changes
+- 🔗 Bookmarkable URLs with filters/search states
+- 🍞 Toast notifications for all user actions
+- 🧭 Reusable back buttons for easy navigation
+- 🎨 Fully responsive across desktop, tablet, and mobile
 
-```bash
-GET /api/products/78
-```
+---
 
-## Data Source
+## 🧱 Tech Stack
 
-The product data is stored in `data/products.json` and contains real product information fetched from a dummy JSON API. This includes:
+| Tech                   | Usage                                      |
+| ---------------------- | ------------------------------------------ |
+| **Next.js App Router** | Routing, dynamic pages, API endpoints      |
+| **Tailwind CSS**       | UI styling with responsive design          |
+| **Zustand**            | State management (products, cart, filters) |
+| **localStorage**       | Cart state persistence                     |
+| **react-hot-toast**    | Toast notifications                        |
 
-- Product details (title, description, price)
-- Product images and thumbnails
-- Stock information
-- Ratings and reviews
-- Categories and tags
+---
 
-## Getting Started
+## 🗂️ Project Structure
 
-To run the development server:
+/app
+├── layout.tsx
+├── page.tsx
+├── /product/[id]
+├── /cart
+/components
+├── Header, Footer, ProductCard, Filters, etc.
+/data
+└── products.json
+/services
+└── productService.ts
+/stores
+├── productStore.ts
+└── cartStore.ts
+/lib
+└── hooks, utils
 
-```bash
-npm run dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
+## 📦 API Routes (Mocked with `products.json`)
 
-## Project Structure
+| Endpoint                 | Description           |
+| ------------------------ | --------------------- |
+| `GET /api/products`      | Returns all products  |
+| `GET /api/products/[id]` | Returns product by ID |
 
-```
-app/          # Next.js app directory
-  api/        # API routes for products
-components/   # Reusable UI components
-data/         # Static data (products.json with sample data)
-hooks/        # Custom React hooks
-lib/          # Utility functions and configurations
-services/     # API calls and external services
-stores/       # State management
-types/        # TypeScript type definitions
-public/       # Static assets
-```
+Data is fetched from `/data/products.json` internally for mocking real API behavior.
 
-## What's Next
+---
 
-Planning to add:
+## 📋 Assignment Requirements Checklist
 
-- Product listing page
-- Product detail view
-- Search and filter functionality
-- Shopping cart (if needed)
+### ✅ Must-Have Features
+
+- Header with logo, search, cart badge, profile
+- Category filter (radio)
+- Price range slider (interactive)
+- Product grid (responsive)
+- Product card with image, title, price, add-to-cart
+- Product detail page with quantity + add to cart
+- Cart page with quantity update, remove, clear
+- Filtering with category + price + search
+- URL-based filters using query params
+- State management using Zustand
+- Cart state persistence with localStorage
 - Responsive design
+- Feature-based commits
 
-## Notes
+### 🎁 Bonus Features (Added)
 
-This project is part of my internship application process. Building it step by step to showcase my frontend development skills.
+- Reusable back button on detail/cart pages
+- Toast notifications for all user actions
+- Clear UX for error/empty states
+- Persist search + filters via URL
+
+---
+
+## 🧪 Future Improvements
+
+- Add login/auth and connect cart with Supabase
+- Add user reviews and ratings
+- Implement pagination or infinite scroll
+- Server-side filtering for large datasets
+
+---
+
+## 📑 Author
+
+**Parshuram Bagade**  
+Frontend Developer from Pune, India  
+[Portfolio](https://mrparshu.live/) • [LinkedIn](https://linkedin.com/in/parshuram-bagade/)
