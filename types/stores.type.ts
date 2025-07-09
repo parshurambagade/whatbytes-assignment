@@ -26,6 +26,5 @@ export type CartStore = {
   clearItem: (itemId: number) => void;
   removeItem: (itemId: number) => void;
   clearCart: () => void;
-  getCartTotal: (state: CartStore) => number;
-  decreaseCartItemQuantity: (itemId: number, quantity: number) => void;
+  getCartTotal: () => void;
 };
