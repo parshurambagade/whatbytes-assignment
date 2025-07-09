@@ -42,19 +42,27 @@ const Header = () => {
           className="border border-light text-white rounded-md px-3 py-2 max-w-md w-full text-sm"
         />
       </div>
-      <div className="relative">
-        {cartItems.length > 0 && (
-          <span className="absolute -top-1 -right-1 bg-white rounded-full px-1 text-xs">
-            {cartItems.length}
-          </span>
-        )}
-        <button
-          onClick={() => router.push("/cart")}
-          className="cursor-pointer text-white gap-2 px-4 py-2 rounded-lg bg-primary-hover flex items-center"
+      <div className="flex items-center gap-3">
+        <div className="relative">
+          {cartItems.length > 0 && (
+            <span className="absolute -top-1 -right-1 bg-white rounded-full px-1 text-xs">
+              {cartItems.length}
+            </span>
+          )}
+          <button
+            onClick={() => router.push("/cart")}
+            className="cursor-pointer text-white gap-2 px-4 py-2 rounded-lg bg-primary-hover flex items-center"
+          >
+            <ShoppingCart size={16} />
+            <span className="text-sm">Cart</span>
+          </button>
+        </div>
+        <div
+          className="hidden w-8 h-8 bg-[var(--border-light)] rounded-full sm:flex items-center border-primary border-1
+         justify-center"
         >
-          <ShoppingCart size={16} />
-          <span className="text-sm">Cart</span>
-        </button>
+          <span className="text-primary font-semibold text-sm">U</span>
+        </div>
       </div>
     </header>
   );
