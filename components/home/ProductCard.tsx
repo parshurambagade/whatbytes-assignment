@@ -8,7 +8,7 @@ const ProductCard = ({ product }: { product: Product }) => {
     <article
       aria-label={"Product: " + product?.title}
       key={product?.id}
-      className="bg-white p-3 flex flex-col gap-0.5 items-center justify-center rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+      className="bg-white p-3 flex flex-col gap-0.5 items-center justify-center rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 w-full"
     >
       <Image
         src={product?.thumbnail}

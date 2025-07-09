@@ -15,11 +15,11 @@ const ProductDetailsPage = () => {
   );
 
   return (
-    <main className=" w-full min-h-[65vh] px-4 py-12 bg-background">
+    <main className=" w-full min-h-[65vh] px-2 md:px-4 py-6 md:py-12 bg-background">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {productDetails && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white md:bg-transparent  px-4 py-8 rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="flex items-center justify-center h-full">
             <Image
               src={productDetails?.images[0] || productDetails?.thumbnail}

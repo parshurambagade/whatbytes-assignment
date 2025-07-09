@@ -12,14 +12,25 @@ const Header = () => {
   const router = useRouter();
   const { cartItems } = useCartStore();
   const { searchQuery, setSearchQuery } = useProductsStore();
+
   return (
-    <header className="bg-primary w-full min-h-[64px] flex items-center justify-between px-4">
+    <header className="bg-primary w-full min-h-[64px] flex items-center justify-evenly sm:justify-between px-4">
       <Link href="/" className="flex items-center justify-center">
+        {/* Small screen logo */}
+        <Image
+          src={"/whatbytes_logo_small.jpg"}
+          alt="WhatBytes Logo"
+          width={40}
+          height={40}
+          className="block sm:hidden"
+        />
+        {/* Default logo for larger screens */}
         <Image
           src={"/whatbytes-logo.svg"}
           alt="WhatBytes Logo"
           width={140}
           height={60}
+          className="hidden sm:block"
         />
       </Link>
       <div className="flex items-center justify-center min-w-[50%]">
