@@ -26,7 +26,7 @@ const Header = () => {
         />
         {/* Default logo for larger screens */}
         <Image
-          src={"/whatbytes-logo.SVG"}
+          src={"/whatbytes-logo.png"}
           alt="WhatBytes Logo"
           width={140}
           height={60}
