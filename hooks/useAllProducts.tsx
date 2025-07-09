@@ -2,6 +2,7 @@ import ProductService from "@/services/productService";
 import { useProductsStore } from "@/stores/products.store";
 import { Product } from "@/types/products.type";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function useAllProducts() {
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +23,9 @@ export default function useAllProducts() {
         addCategories(Array.from(categories));
       } catch (error) {
         console.error("Failed to fetch products:", error);
-        setError("Failed to fetch products");
+        const errorMessage = "Failed to load products. Please try again.";
+        setError(errorMessage);
+        toast.error(errorMessage);
       } finally {
         setLoading(false);
       }

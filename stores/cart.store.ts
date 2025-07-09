@@ -1,6 +1,7 @@
 import { CartStore } from "@/types/stores.type";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import toast from "react-hot-toast";
 
 export const useCartStore = create<CartStore>()(
   devtools(
@@ -15,7 +16,7 @@ export const useCartStore = create<CartStore>()(
 
           if (exhistingItem) {
             // If the item already exists in the cart, increase its quantity
-            return set((state) => {
+            set((state) => {
               const updatedItems = state.cartItems.map((cartItem) =>
                 cartItem.id === item.id
                   ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
@@ -28,14 +29,18 @@ export const useCartStore = create<CartStore>()(
               );
               return { cartItems: updatedItems, cartTotal: newTotal };
             });
+            toast.success(`Increased ${item.title} quantity in cart!`);
+          } else {
+            set((state) => ({
+              cartItems: [...state.cartItems, { ...item, quantity: 1 }],
+              cartTotal: state.cartTotal + item.price,
+            }));
+            toast.success(`${item.title} added to cart!`);
           }
-          set((state) => ({
-            cartItems: [...state.cartItems, { ...item, quantity: 1 }],
-            cartTotal: state.cartTotal + item.price,
-          }));
         },
         clearItem: (itemId) =>
           set((state) => {
+            const itemToRemove = state.cartItems.find(item => item.id === itemId);
             const updatedItems = state.cartItems.filter(
               (item) => item.id !== itemId
             );
@@ -43,6 +48,9 @@ export const useCartStore = create<CartStore>()(
               (total, item) => total + item.price * (item.quantity || 1),
               0
             );
+            if (itemToRemove) {
+              toast.success(`${itemToRemove.title} removed from cart!`);
+            }
             return { cartItems: updatedItems, cartTotal: newTotal };
           }),
         removeItem: (itemId) => {
@@ -65,11 +73,21 @@ export const useCartStore = create<CartStore>()(
                 (total, item) => total + item.price * (item.quantity || 1),
                 0
               );
+              
+              if (updatedItems.find(item => item.id === itemId)) {
+                toast.success(`Decreased ${itemToRemove.title} quantity!`);
+              } else {
+                toast.success(`${itemToRemove.title} removed from cart!`);
+              }
+              
               return { cartItems: updatedItems, cartTotal: newTotal };
             });
           }
         },
-        clearCart: () => set({ cartItems: [], cartTotal: 0 }),
+        clearCart: () => {
+          set({ cartItems: [], cartTotal: 0 });
+          toast.success("Cart cleared successfully!");
+        },
         getCartTotal: () => {
           const items = get().cartItems;
           const total = items.reduce(

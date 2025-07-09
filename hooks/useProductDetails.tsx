@@ -1,6 +1,7 @@
 import ProductService from "@/services/productService";
 import { Product } from "@/types/products.type";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function useProductDetails(productId: string) {
   const [error, setError] = useState<string | null>(null);
@@ -15,8 +16,10 @@ export default function useProductDetails(productId: string) {
         const product = await ProductService.getProductById(productId);
         setProductDetails(product);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
-        setError("Failed to fetch products");
+        console.error("Failed to fetch product details:", error);
+        const errorMessage = "Failed to fetch product details";
+        setError(errorMessage);
+        toast.error(errorMessage);
       } finally {
         setLoading(false);
       }
