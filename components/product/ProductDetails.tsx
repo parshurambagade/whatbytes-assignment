@@ -2,6 +2,7 @@ import { Product } from "@/types/products.type";
 import { Star } from "lucide-react";
 import React from "react";
 import AddToCartButton from "../common/AddToCartButton";
+import QuantityButtons from "../common/QuantityButtons";
 
 const ProductDetails = ({ productDetails }: { productDetails: Product }) => {
   const { title, description, price, category, rating } = productDetails || {};
@@ -18,7 +19,10 @@ const ProductDetails = ({ productDetails }: { productDetails: Product }) => {
       <p className="capitalize">
         Category - <span className="font-medium">{category}</span>
       </p>
-      <AddToCartButton item={productDetails} />
+      <div className="flex flex-col sm:flex-row items-center gap-4">
+        <QuantityButtons item={productDetails} />
+        <AddToCartButton item={productDetails} />
+      </div>
     </div>
   );
 };

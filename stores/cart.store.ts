@@ -60,7 +60,7 @@ export const useCartStore = create<CartStore>()(
                       }
                     : item
                 )
-                .filter((item) => item.quantity > 0);
+                .filter((item) => (item?.quantity ? item.quantity > 0 : false));
               const newTotal = updatedItems.reduce(
                 (total, item) => total + item.price * (item.quantity || 1),
                 0

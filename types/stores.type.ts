@@ -16,7 +16,7 @@ export type ProductStore = {
 };
 
 export interface CartItem extends Product {
-  quantity: number;
+  quantity?: number;
 }
 
 export type CartStore = {
