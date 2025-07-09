@@ -8,7 +8,7 @@ This is a fully responsive, filterable e-commerce app built using **Next.js** an
 
 [🔗 View Deployed App on Vercel](https://whatbytes-assignment-beta.vercel.app/)
 
-![Demo Preview](https://whatbytes-assignment-beta.vercel.app/demo.mp4)
+![Demo Preview](https://whatbytes-assignment-beta.vercel.app/demo.gif)
 
 ---
 
