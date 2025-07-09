@@ -11,6 +11,8 @@ export type ProductStore = {
   setCurrentCategory: (category: string) => void;
   currentPriceRange: number[];
   setCurrentPriceRange: (priceRange: number[]) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 };
 
 export interface CartItem extends Product {

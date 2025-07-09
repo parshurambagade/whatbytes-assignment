@@ -12,6 +12,8 @@ export default function useFilters() {
     setCurrentCategory,
     currentPriceRange,
     setCurrentPriceRange,
+    searchQuery,
+    setSearchQuery,
   } = useProductsStore();
 
   const router = useRouter();
@@ -22,15 +24,17 @@ export default function useFilters() {
     const urlCategory = searchParams.get("category") || "all";
     const urlMinPrice = searchParams.get("minPrice");
     const urlMaxPrice = searchParams.get("maxPrice");
+    const urlQuery = searchParams.get("q") || "";
 
     setCurrentCategory(urlCategory);
+    setSearchQuery(urlQuery);
 
     if (urlMinPrice && urlMaxPrice) {
       setCurrentPriceRange([parseInt(urlMinPrice), parseInt(urlMaxPrice)]);
     } else {
       setCurrentPriceRange([0, 2000]);
     }
-  }, [searchParams, setCurrentCategory, setCurrentPriceRange]);
+  }, [searchParams, setCurrentCategory, setCurrentPriceRange, setSearchQuery]);
 
   // Update URL when filters change
   useEffect(() => {
@@ -45,38 +49,57 @@ export default function useFilters() {
       params.set("maxPrice", currentPriceRange[1].toString());
     }
 
+    if (searchQuery.trim() !== "") {
+      params.set("q", searchQuery);
+    }
+
     const queryString = params.toString();
     const newUrl = queryString ? `/?${queryString}` : "/";
 
     router.replace(newUrl, { scroll: false });
-  }, [currentCategory, currentPriceRange, router]);
+  }, [currentCategory, currentPriceRange, searchQuery, router]);
 
+  // Reset filters when category changes
   useEffect(() => {
-    const filterByCategory = (category: string) => {
-      if (category === "all") {
-        return allProducts;
-      }
-      return allProducts.filter((product) => product.category === category);
-    };
-    setFilteredProducts(filterByCategory(currentCategory));
-  }, [currentCategory, allProducts, setFilteredProducts]);
+    if (currentCategory === "all") return;
 
+    setCurrentPriceRange([0, 2000]);
+    setSearchQuery("");
+  }, [currentCategory, setCurrentPriceRange, setSearchQuery]);
+
+  // Combined filtering logic
   useEffect(() => {
-    const filterByPriceRange = (priceRange: number[]) => {
-      return currentCategory === "all"
-        ? allProducts.filter(
-            (product) =>
-              product.price >= priceRange[0] && product.price <= priceRange[1]
-          )
-        : allProducts.filter(
-            (product) =>
-              product.price >= priceRange[0] &&
-              product.price <= priceRange[1] &&
-              product.category === currentCategory
-          );
-    };
-    setFilteredProducts(filterByPriceRange(currentPriceRange));
-  }, [currentPriceRange, allProducts, setFilteredProducts, currentCategory]);
+    let filtered = allProducts;
+
+    // Filter by search query
+    if (searchQuery.trim() !== "") {
+      filtered = filtered.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Filter by category
+    if (currentCategory !== "all") {
+      filtered = filtered.filter(
+        (product) => product.category === currentCategory
+      );
+    }
+
+    // Filter by price range
+    filtered = filtered.filter(
+      (product) =>
+        product.price >= currentPriceRange[0] &&
+        product.price <= currentPriceRange[1]
+    );
+
+    setFilteredProducts(filtered);
+  }, [
+    allProducts,
+    searchQuery,
+    currentCategory,
+    currentPriceRange,
+    setFilteredProducts,
+  ]);
 
   return {
     filteredProducts,
@@ -85,5 +108,7 @@ export default function useFilters() {
     setCurrentCategory,
     currentPriceRange,
     setCurrentPriceRange,
+    searchQuery,
+    setSearchQuery,
   };
 }

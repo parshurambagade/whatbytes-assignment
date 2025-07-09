@@ -1,6 +1,7 @@
 "use client";
 
 import { useCartStore } from "@/stores/cart.store";
+import { useProductsStore } from "@/stores/products.store";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import React from "react";
 const Header = () => {
   const router = useRouter();
   const { cartItems } = useCartStore();
+  const { searchQuery, setSearchQuery } = useProductsStore();
   return (
     <header className="bg-primary w-full min-h-[64px] flex items-center justify-between px-4">
       <Link href="/" className="flex items-center justify-center">
@@ -23,6 +25,8 @@ const Header = () => {
       <div className="flex items-center justify-center min-w-[50%]">
         <input
           type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="🔍 Search for products..."
           className="border border-light text-white rounded-md px-3 py-2 max-w-md w-full text-sm"
         />
