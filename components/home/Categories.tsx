@@ -14,8 +14,8 @@ const Categories = () => {
 
   return (
     <div className="mt-4 flex flex-col gap-2">
-      <h3 className="text-white">Categories</h3>
-      <label htmlFor="all" className="text-white ml-2 flex gap-2 items-center">
+      <h3 className="text-white font-semibold">Categories</h3>
+      <label htmlFor="all" className="text-white flex gap-2 items-center">
         <input
           type="radio"
           name="category"
@@ -29,7 +29,7 @@ const Categories = () => {
       {categories.map((category, index) => (
         <label
           htmlFor={category}
-          className="text-white ml-2 flex gap-2 items-center capitalize"
+          className="text-white flex gap-2 items-center capitalize"
           key={index}
         >
           <input

@@ -9,6 +9,8 @@ export type ProductStore = {
   setFilteredProducts: (products: Product[]) => void;
   currentCategory: string;
   setCurrentCategory: (category: string) => void;
+  currentPriceRange: number[];
+  setCurrentPriceRange: (priceRange: number[]) => void;
 };
 
 interface CartItem extends Product {
