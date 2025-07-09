@@ -8,7 +8,7 @@ This is a fully responsive, filterable e-commerce app built using **Next.js** an
 
 [🔗 View Deployed App on Vercel](https://whatbytes-assignment-beta.vercel.app/)
 
-<video src="https://whatbytes-assignment-beta.vercel.app/demo.mp4" autoplay loop muted playsinline width="100%" />
+![Demo Preview](https://whatbytes-assignment-beta.vercel.app/demo.mp4)
 
 ---
 
@@ -54,22 +54,46 @@ This is a fully responsive, filterable e-commerce app built using **Next.js** an
 
 ## 🗂️ Project Structure
 
-/app
-├── layout.tsx
-├── page.tsx
-├── /product/[id]
-├── /cart
-/components
-├── Header, Footer, ProductCard, Filters, etc.
-/data
-└── products.json
-/services
-└── productService.ts
-/stores
-├── productStore.ts
-└── cartStore.ts
-/lib
-└── hooks, utils
+```
+whatbytes/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── product/[id]/
+│   │   └── page.tsx
+│   ├── cart/
+│   │   └── page.tsx
+│   └── api/
+│       └── products/
+├── components/
+│   ├── layouts/
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── home/
+│   │   ├── ProductCard.tsx
+│   │   ├── FilterSidebar.tsx
+│   │   └── Categories.tsx
+│   ├── common/
+│   │   ├── BackButton.tsx
+│   │   └── QuantityButtons.tsx
+│   └── providers/
+├── data/
+│   └── products.json
+├── hooks/
+│   ├── useFilters.tsx
+│   ├── useAllProducts.tsx
+│   └── useProductDetails.tsx
+├── services/
+│   └── productService.ts
+├── stores/
+│   ├── products.store.ts
+│   └── cart.store.ts
+├── types/
+│   ├── products.type.ts
+│   └── stores.type.ts
+└── lib/
+    └── utils.ts
+```
 
 ---
 
