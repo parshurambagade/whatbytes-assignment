@@ -6,6 +6,7 @@ import { Product } from "@/types/products.type";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import React from "react";
+import BackButton from "@/components/common/BackButton";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -16,6 +17,9 @@ const ProductDetailsPage = () => {
 
   return (
     <main className=" w-full min-h-[65vh] px-2 md:px-4 py-6 md:py-12 bg-background">
+      <div className="mb-4 px-4">
+        <BackButton text="Back to Products" />
+      </div>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {productDetails && (

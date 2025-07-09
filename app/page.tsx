@@ -9,9 +9,11 @@ export default function Home() {
         <FilterSidebar />
 
         <section aria-labelledby="product-listing" className="w-full">
-          <h1 id="product-listing" className="text-2xl font-bold">
-            Product Listing
-          </h1>
+          <div className="flex items-center gap-4 mb-4">
+            <h1 id="product-listing" className="text-2xl font-bold">
+              Product Listing
+            </h1>
+          </div>
           <ProductCardsContainer />
         </section>
       </main>

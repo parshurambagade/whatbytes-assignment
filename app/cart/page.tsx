@@ -5,6 +5,7 @@ import { useCartStore } from "@/stores/cart.store";
 import { CartItem } from "@/types/stores.type";
 import Image from "next/image";
 import QuantityButtons from "@/components/common/QuantityButtons";
+import BackButton from "@/components/common/BackButton";
 
 export default function CartPage() {
   const { cartItems, clearCart, cartTotal, clearItem } = useCartStore();
@@ -15,7 +16,10 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto max-w-4xl min-h-[calc(100vh-64px)] px-4 py-8">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Your Cart</h2>
+      <div className="flex items-center gap-4 mb-6">
+        <BackButton text="Continue Shopping" />
+        <h2 className="text-2xl font-bold text-gray-800">Your Cart</h2>
+      </div>
 
       {/* Card Container */}
       <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6">
