@@ -1,6 +1,7 @@
 import { Product } from "@/types/products.type";
 import { Star } from "lucide-react";
 import React from "react";
+import AddToCartButton from "../common/AddToCartButton";
 
 const ProductDetails = ({ productDetails }: { productDetails: Product }) => {
   const { title, description, price, category, rating } = productDetails || {};
@@ -17,9 +18,7 @@ const ProductDetails = ({ productDetails }: { productDetails: Product }) => {
       <p className="capitalize">
         Category - <span className="font-medium">{category}</span>
       </p>
-      <button className="bg-primary text-white px-4 py-2 rounded-lg mt-4">
-        Add to Cart
-      </button>
+      <AddToCartButton item={productDetails} />
     </div>
   );
 };

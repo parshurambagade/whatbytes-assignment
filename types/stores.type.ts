@@ -13,7 +13,7 @@ export type ProductStore = {
   setCurrentPriceRange: (priceRange: number[]) => void;
 };
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
 }
 
@@ -21,9 +21,9 @@ export type CartStore = {
   cartItems: CartItem[];
   cartTotal: number;
   addToCart: (item: Product) => void;
-  removeFromCart: (itemId: number) => void;
+  clearItem: (itemId: number) => void;
+  removeItem: (itemId: number) => void;
   clearCart: () => void;
   getCartTotal: (state: CartStore) => number;
-  increaseCartItemQuantity: (itemId: number, quantity: number) => void;
   decreaseCartItemQuantity: (itemId: number, quantity: number) => void;
 };
