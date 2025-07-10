@@ -6,9 +6,12 @@ import { CartItem } from "@/types/stores.type";
 import Image from "next/image";
 import QuantityButtons from "@/components/common/QuantityButtons";
 import BackButton from "@/components/common/BackButton";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const { cartItems, clearCart, cartTotal, clearItem } = useCartStore();
+
+  const router = useRouter();
 
   const handleClearItem = (item: CartItem) => {
     clearItem(item.id);
@@ -79,7 +82,8 @@ export default function CartPage() {
         </button>
         <button
           disabled={cartItems.length === 0}
-          className="w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-full hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center cursor-pointer"
+          onClick={() => router.push("/success")}
+          className="w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-full hover:opacity-90 transition-colors duration-200 flex items-center justify-center cursor-pointer"
         >
           <ShoppingCartIcon className="mr-2 h-5 w-5" /> Checkout
         </button>

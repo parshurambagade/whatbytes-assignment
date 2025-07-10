@@ -11,6 +11,7 @@ const ToastProvider = () => {
         style: {
           background: "white",
           color: "#1F2937",
+          marginTop: "4rem",
           border: "1px solid #E5E7EB",
           borderRadius: "8px",
           padding: "12px 16px",
